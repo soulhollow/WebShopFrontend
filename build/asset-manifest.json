@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f30ac621.css",
+    "main.js": "/static/js/main.40f1a3c0.js",
+    "static/media/Flexibel.png": "/static/media/Flexibel.5f97920e10a84b2ef229.png",
+    "static/media/Teambild.jpg": "/static/media/Teambild.8505525291bb1a448827.jpg",
+    "static/media/Handy.jpg": "/static/media/Handy.6e2de919c0ef69139702.jpg",
+    "static/media/Individuell.jpg": "/static/media/Individuell.9ff83bd35355e2108f0a.jpg",
+    "static/media/Effektiv.jpg": "/static/media/Effektiv.fcd9e0e9ce538dbf101d.jpg",
+    "static/media/Schreibtisch.jpg": "/static/media/Schreibtisch.351ce595e7ad58f742c1.jpg",
+    "static/media/Logo_MF.jpeg": "/static/media/Logo_MF.83c6325a7528748fbdda.jpeg",
+    "index.html": "/index.html",
+    "main.f30ac621.css.map": "/static/css/main.f30ac621.css.map",
+    "main.40f1a3c0.js.map": "/static/js/main.40f1a3c0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f30ac621.css",
+    "static/js/main.40f1a3c0.js"
+  ]
+}

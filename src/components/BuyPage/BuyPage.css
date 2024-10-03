@@ -1,0 +1,306 @@
+/* src/components/BuyPage/BuyPage.css */
+
+/* Allgemeine Stile für BuyPage */
+.buy-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: 'Arial, sans-serif';
+  color: #333;
+}
+
+/* Product Options Section */
+.product-options-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.product-options-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #003366;
+}
+
+.pricing-table {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.option-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 300px;
+  background-color: #f9f9f9;
+  flex: 1 1 250px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.option-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.option-card h3 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #003366;
+}
+
+.option-card .price {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.features-list li {
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.features-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #007bff;
+}
+
+.buy-button {
+  padding: 10px 20px;
+  background-color: #003366;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
+
+.buy-button:hover {
+  background-color: #0056b3;
+}
+
+/* Features Comparison Section */
+.features-comparison-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.features-comparison-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #003366;
+}
+
+.comparison-table {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.comparison-table th, .comparison-table td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 1em;
+}
+
+.comparison-table th {
+  background-color: #f1f1f1;
+  color: #003366;
+}
+
+.comparison-table td {
+  color: #555;
+}
+
+/* Customer Reviews Section */
+.customer-reviews-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.customer-reviews-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #003366;
+}
+
+.review-carousel {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.review-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 300px;
+  background-color: #f9f9f9;
+  flex: 1 1 250px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.review-card .customer-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #003366;
+}
+
+.review-card .review-text {
+  font-size: 1em;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.review-card .rating {
+  font-size: 1.5em;
+  color: #ffcc00;
+}
+
+/* Payment Section */
+.payment-section {
+  padding: 50px 20px;
+  text-align: center;
+  align-items: center;
+}
+
+.payment-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #003366;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.payment-form label {
+  margin-bottom: 15px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.payment-form input {
+  padding: 10px;
+  font-size: 1em;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .buy-page {
+    padding: 15px;
+  }
+
+  .product-options-section h2,
+  .features-comparison-section h2,
+  .customer-reviews-section h2,
+  .payment-section h2 {
+    font-size: 2em;
+  }
+
+  .option-card,
+  .review-card {
+    max-width: 45%;
+  }
+
+  .comparison-table th, .comparison-table td {
+    padding: 10px;
+    font-size: 0.9em;
+  }
+
+  .payment-form {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .buy-page {
+    padding: 10px;
+  }
+
+  .product-options-section,
+  .features-comparison-section,
+  .customer-reviews-section,
+  .payment-section {
+    padding: 30px 10px;
+  }
+
+  .product-options-section h2,
+  .features-comparison-section h2,
+  .customer-reviews-section h2,
+  .payment-section h2 {
+    font-size: 1.5em;
+  }
+
+  .pricing-table,
+  .review-carousel {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .option-card,
+  .review-card {
+    max-width: 100%;
+  }
+
+  .comparison-table {
+    font-size: 0.8em;
+  }
+
+  .submit-button {
+    width: 100%;
+  }
+}

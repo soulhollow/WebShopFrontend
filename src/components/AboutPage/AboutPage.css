@@ -1,0 +1,247 @@
+/* src/components/AboutPage/AboutPage.css */
+
+/* Allgemeine Stile für AboutPage */
+.about-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: 'Arial, sans-serif';
+  color: #333;
+}
+
+/* Overview Section */
+.overview-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.overview-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #003366;
+}
+
+.overview-section p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.overview-section img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Tech Specs Section */
+.tech-specs-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.tech-specs-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #003366;
+}
+
+.specs-list {
+  list-style: none;
+  padding: 0;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.specs-list li {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.specs-list li::before {
+  content: "✔️";
+  margin-right: 10px;
+  color: #007bff;
+}
+
+/* How It Works Section */
+.how-it-works-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.how-it-works-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #003366;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.step {
+  max-width: 300px;
+  flex: 1 1 250px;
+  margin: 10px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.step h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #003366;
+}
+
+.step p {
+  font-size: 1.1em;
+  color: #555;
+}
+
+.how-it-works-section img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Team Section */
+.team-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.team-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #003366;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.team-member {
+  text-align: center;
+  max-width: 300px;
+  flex: 1 1 250px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.team-member img {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  margin-bottom: 20px;
+  object-fit: cover;
+}
+
+.team-member h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #003366;
+}
+
+.team-member p {
+  font-size: 1.1em;
+  color: #555;
+}
+
+.team-img img {
+  width: 50%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .overview-section h2,
+  .tech-specs-section h2,
+  .how-it-works-section h2,
+  .team-section h2 {
+    font-size: 2em;
+  }
+
+  .overview-section p,
+  .tech-specs-section .specs-list,
+  .how-it-works-section .step p,
+  .team-member p {
+    font-size: 1em;
+  }
+
+  .steps, .team-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step, .team-member {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .team-img img {
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-page {
+    padding: 10px;
+  }
+
+  .overview-section {
+    padding: 30px 10px;
+  }
+
+  .overview-section h2,
+  .tech-specs-section h2,
+  .how-it-works-section h2,
+  .team-section h2 {
+    font-size: 1.5em;
+  }
+
+  .overview-section p,
+  .tech-specs-section .specs-list,
+  .how-it-works-section .step p,
+  .team-member p {
+    font-size: 0.9em;
+  }
+
+  .steps, .team-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step, .team-member {
+    max-width: 100%;
+    flex: 1 1 100%;
+    margin: 10px 0;
+  }
+
+  .team-member img {
+    height: 60px;
+    width: 60px;
+  }
+
+  .team-img img {
+    height: 100px;
+  }
+}

@@ -1,0 +1,36 @@
+.datenschutz {
+    max-width: 800px; /* Maximale Breite der Box */
+    margin: 20px auto; /* Zentriert die Box horizontal */
+    padding: 20px; /* Innenabstand */
+    background-color: #f9f9f9; /* Hellgrauer Hintergrund */
+    border: 1px solid #ddd; /* Hellgraue Umrandung */
+    border-radius: 8px; /* Abgerundete Ecken */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+}
+
+h2 {
+    font-size: 24px; /* Schriftgröße für Überschrift */
+    color: #333; /* Dunkelgraue Schriftfarbe */
+    margin-bottom: 15px; /* Abstand unter der Überschrift */
+}
+
+p {
+    font-size: 16px; /* Schriftgröße für den Text */
+    line-height: 1.6; /* Zeilenhöhe für bessere Lesbarkeit */
+    color: #555; /* Graue Schriftfarbe */
+    margin-bottom: 15px; /* Abstand zwischen den Absätzen */
+}
+
+@media (max-width: 600px) {
+    .datenschutz {
+        padding: 15px; /* Weniger Innenabstand auf kleinen Bildschirmen */
+    }
+
+    h2 {
+        font-size: 20px; /* Kleinere Schriftgröße für Überschrift */
+    }
+
+    p {
+        font-size: 14px; /* Kleinere Schriftgröße für den Text */
+    }
+}

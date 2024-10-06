@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(document.getElementById('root')); // Erstelle e
 
 root.render(
     <React.StrictMode>
-        <AuthProvider> {/* Umschließe die App mit AuthProvider */}
+        <AuthProvider>
             <App />
         </AuthProvider>
     </React.StrictMode>

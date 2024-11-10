@@ -91,6 +91,14 @@ class ApiService {
         return this.apiClient.get('/orderproducts/user');
     }
 
+    // Text Content API
+    getTextContentByKey(key) {
+        return this.apiClient.get(`/text-content/${key}`);
+    }
+    getTextContentsByKeys(keys) {
+        return Promise.all(keys.map(key => this.getTextContentByKey(key)));
+    }
+
 
     // Payment APIs
     /*processPayment(paymentRequest) {

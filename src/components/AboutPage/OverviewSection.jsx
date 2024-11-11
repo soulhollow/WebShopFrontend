@@ -1,19 +1,50 @@
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import ApiService from '../../context/ApiService.jsx';
 import './AboutPage.css';
 
 function OverviewSection() {
-  return (
-    <section className="overview-section">
-      <h2>Wer sind wir?</h2>
-      <p>
-      Wir sind MediaFlow, eine leidenschaftliche Social Media Management Agentur, die sich darauf spezialisiert hat, Unternehmen dabei zu helfen, in der digitalen Welt zu wachsen und erfolgreich zu sein. Unser Team aus kreativen Köpfen, Strategen und Social Media Experten entwickelt maßgeschneiderte Lösungen, um Ihre Marke authentisch und wirkungsvoll in den sozialen Netzwerken zu präsentieren.
-      Mit unserem tiefen Verständnis für aktuelle Trends, Plattformen und Zielgruppen unterstützen wir Sie dabei, nicht nur Reichweite zu generieren, sondern echte Verbindungen zu schaffen. Ob kleine Startups oder etablierte Unternehmen – wir passen unsere Strategien Ihren individuellen Zielen an und sorgen dafür, dass Ihre Botschaft genau dort ankommt, wo sie hingehört.
-      Unsere Mission ist es, Ihr Unternehmen durch kreative Inhalte, gezieltes Community-Management und datengetriebene Kampagnen auf ein neues Level zu heben. Dabei setzen wir auf Transparenz, Innovation und messbare Ergebnisse.
-      Gemeinsam gestalten wir die Zukunft Ihrer Marke im digitalen Raum. 
-      </p>
-    </section>
-  );
+    const [header, setHeader] = useState('');
+    const [text, setText] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchOverviewData = async () => {
+            try {
+                const keys = ['overview_section_header', 'overview_section_text'];
+                const responses = await ApiService.getTextContentsByKeys(keys);
+                const contentMap = {};
+                responses.forEach(response => {
+                    contentMap[response.data.key] = response.data.content;
+                });
+
+                setHeader(contentMap['overview_section_header']);
+                setText(contentMap['overview_section_text']);
+                setLoading(false);
+            } catch (err) {
+                console.error('Fehler beim Laden der Overview-Daten:', err);
+                setError('Es gab ein Problem beim Laden der Daten.');
+                setLoading(false);
+            }
+        };
+
+        fetchOverviewData();
+    }, []);
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>{error}</p>;
+    }
+
+    return (
+        <section className="overview-section">
+            <h2>{header}</h2>
+            <p>{text}</p>
+        </section>
+    );
 }
 
 export default OverviewSection;

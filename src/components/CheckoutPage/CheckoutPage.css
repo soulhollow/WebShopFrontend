@@ -69,3 +69,29 @@ h2 {
     font-size: 1.5rem;
     color: #999;
 }
+
+.price-summary {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.price-row.total {
+    font-weight: bold;
+    color: #000;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.price-summary span {
+    display: block;
+}
+

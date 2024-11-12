@@ -1,13 +1,14 @@
 // src/components/CheckoutPage/CheckoutPage.js
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import ApiService from '../../context/ApiService.jsx';
-import { loadStripe } from '@stripe/stripe-js';
 import './CheckoutPage.css'; // CSS importieren
 
 function CheckoutPage() {
     const { productId } = useParams();
+    const navigate = useNavigate();
     const [product, setProduct] = useState(null);
+    const VAT_RATE = 0.19; // 19% Mehrwertsteuer
 
     useEffect(() => {
         ApiService.getProductById(productId)
@@ -19,15 +20,22 @@ function CheckoutPage() {
             });
     }, [productId]);
 
-    const handleCheckout = async () => {
-        try {
-            const session = await ApiService.createCheckoutSession(productId);
+    const formatCurrency = (amount) => {
+        return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(amount);
+    };
 
-            const stripe = await loadStripe('Ihr-Stripes-Publishable-Key');
-            await stripe.redirectToCheckout({ sessionId: session.data.id });
-        } catch (error) {
-            console.error('Fehler beim Erstellen der Checkout-Session:', error);
-        }
+    const calculatePrices = () => {
+        if (!product) return { net: 0, vat: 0, gross: 0 };
+        const net = product.price;
+        const vat = net * VAT_RATE;
+        const gross = net + vat;
+        return { net, vat, gross };
+    };
+
+    const { net, vat, gross } = calculatePrices();
+
+    const handleCheckout = () => {
+        navigate(`/payment/${productId}`);
     };
 
     if (!product) {
@@ -40,7 +48,20 @@ function CheckoutPage() {
                 <h1>Checkout</h1>
                 <h2>{product.name}</h2>
                 <p className="product-description">{product.description}</p>
-                <p>Preis: <span className="product-price">{product.price} €</span></p>
+                <div className="price-summary">
+                    <div className="price-row">
+                        <span>Netto:</span>
+                        <span>{formatCurrency(net)}</span>
+                    </div>
+                    <div className="price-row">
+                        <span>Mehrwertsteuer (19%):</span>
+                        <span>{formatCurrency(vat)}</span>
+                    </div>
+                    <div className="price-row total">
+                        <span>Brutto:</span>
+                        <span>{formatCurrency(gross)}</span>
+                    </div>
+                </div>
                 <button className="checkout-button" onClick={handleCheckout}>Weiter zur Zahlung</button>
             </div>
         </div>

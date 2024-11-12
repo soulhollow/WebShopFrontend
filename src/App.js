@@ -1,5 +1,4 @@
 
-import React, {useContext} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
 import HomePage from './components/HomePage/HomePage';
@@ -14,6 +13,8 @@ import Footer from './components/Footer/Footer';
 import CheckoutPage from "./components/CheckoutPage/CheckoutPage";
 import ImpressumPage from './components/ImpressumPage/Impressum';
 import Datenschutz from "./components/DatenschutzPage/Datenschtz";
+import PaymentPage from "./components/PaymentPage/PaymentPage";
+import OrderConfirmationPage from "./components/OrderConfirmationPage/OrderConfirmationPage";
 
 function App() {
     return (
@@ -29,6 +30,8 @@ function App() {
                 <Route path="/impressum" element={<ImpressumPage />} />
                 <Route path="/datenschutz" element={<Datenschutz />} />
                 <Route path="/checkout/:productId" element={<CheckoutPage />} />
+                <Route path="/payment/:productId" element={<PaymentPage />} />
+                <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
                 <Route
                     path="/profile"
                     element={

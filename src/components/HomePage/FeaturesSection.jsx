@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ApiService from '../../context/ApiService.jsx';
 import './HomePage.css';
+import flexibel from './Flexibel.png';
+import effektiv from './Effektiv.jpg';
+import individuell from './Individuell.jpg';
 
 function FeaturesSection() {
   const [header, setHeader] = useState('');
@@ -24,9 +27,11 @@ function FeaturesSection() {
         });
 
         setHeader(contentMap['features_section_header']);
-        const formattedFeatures = keys
-            .filter(key => key !== 'features_section_header')
-            .map(key => JSON.parse(contentMap[key]));
+        const formattedFeatures = [
+          { ...JSON.parse(contentMap['feature_1']), image: flexibel },
+          { ...JSON.parse(contentMap['feature_2']), image: individuell },
+          { ...JSON.parse(contentMap['feature_3']), image: effektiv }
+        ];
 
         setFeaturesData(formattedFeatures);
         setLoading(false);

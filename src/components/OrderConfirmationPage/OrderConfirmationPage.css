@@ -1,0 +1,71 @@
+/* src/components/OrderConfirmationPage/OrderConfirmationPage.css */
+
+.order-confirmation-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Arial, sans-serif', serif;
+    color: #333;
+    background-color: #f0f4f8; /* Ein sanfterer Hintergrundton */
+}
+
+.confirmation-box {
+    max-width: 500px;
+    width: 100%;
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out; /* Ein subtiler Einblendeffekt */
+}
+
+.confirmation-icon {
+    font-size: 3em;
+    color: #27ae60; /* Ein positives Grün für das Icon */
+    margin-bottom: 20px;
+}
+
+.confirmation-box h1 {
+    font-size: 2em;
+    color: #003366;
+    margin-bottom: 10px;
+}
+
+.confirmation-box p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.confirmation-box .home-link {
+    font-size: 1.1em;
+    color: #fff;
+    background-color: #003366;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.confirmation-box .home-link:hover {
+    background-color: #0056b3;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

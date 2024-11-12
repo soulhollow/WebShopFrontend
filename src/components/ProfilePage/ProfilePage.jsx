@@ -1,56 +1,65 @@
+// Importiert React und die benötigten Hooks `useContext`, `useEffect` und `useState`
 import React, { useContext, useEffect, useState } from 'react';
-import AuthContext from '../../context/AuthContext'; // Import the authentication context
-import apiServiceInstance from '../../context/ApiService'; // Import the ApiService
-import './ProfilePage.css'; // Import your custom CSS
+// Importiert den Authentifizierungs-Kontext, um den Login-Status zu prüfen
+import AuthContext from '../../context/AuthContext';
+// Importiert den ApiService, um die Bestellungen des Nutzers abzurufen
+import apiServiceInstance from '../../context/ApiService';
+// Importiert das CSS-Stylesheet für das Styling der Profilseite
+import './ProfilePage.css';
 
 function ProfilePage() {
-  const { isAuthenticated } = useContext(AuthContext); // Get authentication state
+  // Ermittelt den Authentifizierungsstatus
+  const { isAuthenticated } = useContext(AuthContext);
+  // Definiert den State für die Bestellungen und eventuelle Fehlernachrichten
   const [purchases, setPurchases] = useState([]);
   const [error, setError] = useState('');
 
+  // useEffect-Hook führt `fetchUserIdAndPurchases` nur aus, wenn der Nutzer eingeloggt ist
   useEffect(() => {
     if (isAuthenticated) {
-      fetchUserIdAndPurchases(); // Fetch userId and then purchases
+      fetchUserIdAndPurchases();
     }
   }, [isAuthenticated]);
 
+  // Funktion zum Abrufen der Bestellungen des Nutzers
   const fetchUserIdAndPurchases = async () => {
     try {
-      // Abrufen der Bestellungen des Nutzers
+      // Ruft die Bestellungen des Nutzers anhand des Tokens ab
       const orderResponse = await apiServiceInstance.getOrdersByToken();
       if (orderResponse.status === 200) {
-        setPurchases(orderResponse.data); // Assuming the API returns an array of purchases
+        setPurchases(orderResponse.data); // Speichert die erhaltenen Bestellungen im State
       } else {
-        setError('Failed to load purchases.');
+        setError('Failed to load purchases.'); // Setzt eine Fehlermeldung bei fehlgeschlagenem Abruf
       }
     } catch (err) {
-      setError('An error occurred while fetching purchases.');
+      setError('An error occurred while fetching purchases.'); // Setzt eine Fehlermeldung bei einem API-Fehler
     }
   };
 
+  // Zeigt eine Nachricht an, wenn der Nutzer nicht eingeloggt ist
   if (!isAuthenticated) {
     return <h6 className="message">You need to log in to view your purchases.</h6>;
   }
 
   return (
-    <div className="profile-page">
-      <h4 className="title">Your Purchases</h4>
-      {error && <p className="error-message">{error}</p>}
+      <div className="profile-page"> {/* Haupt-Container für die Profilseite */}
+        <h4 className="title">Your Purchases</h4> {/* Titel für die Bestellübersicht */}
+        {error && <p className="error-message">{error}</p>} {/* Fehlernachricht anzeigen, falls vorhanden */}
 
-      <div className="purchases-grid">
-        {purchases.map((purchase) => (
-          <div className="card" key={purchase.orderId}>
-            <div className="card-content">
-              <h6 className="order-id">Order #{purchase.orderId}</h6>
-              <p className="product-name">Product: {purchase.productName}</p>
-              <p className="quantity">Quantity: {purchase.quantity}</p>
-              <p className="price">Price: ${purchase.price.toFixed(2)}</p>
-              <p className="status">Status: {purchase.orderStatus}</p>
-            </div>
-          </div>
-        ))}
+        <div className="purchases-grid"> {/* Grid-Layout für die Bestellkarten */}
+          {purchases.map((purchase) => (
+              <div className="card" key={purchase.orderId}> {/* Einzelne Karte für jede Bestellung */}
+                <div className="card-content">
+                  <h6 className="order-id">Order #{purchase.orderId}</h6> {/* Bestellnummer */}
+                  <p className="product-name">Product: {purchase.productName}</p> {/* Produktname */}
+                  <p className="quantity">Quantity: {purchase.quantity}</p> {/* Bestellmenge */}
+                  <p className="price">Price: ${purchase.price.toFixed(2)}</p> {/* Preis */}
+                  <p className="status">Status: {purchase.orderStatus}</p> {/* Bestellstatus */}
+                </div>
+              </div>
+          ))}
+        </div>
       </div>
-    </div>
   );
 }
 

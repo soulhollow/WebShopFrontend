@@ -1,15 +1,15 @@
-// src/components/BuyPage/ProductOptionsSection.js
 import React, { useState, useEffect } from 'react';
 import './BuyPage.css';
 import ApiService from '../../context/ApiService.jsx';
 import { useNavigate } from 'react-router-dom';
 
 function ProductOptionsSection() {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([]); // Speichert die Produktoptionen
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
+    // Lädt die Produktdaten beim ersten Rendern
     useEffect(() => {
         ApiService.getAllProducts()
             .then(response => {
@@ -23,18 +23,14 @@ function ProductOptionsSection() {
             });
     }, []);
 
-    if (loading) {
-        return <div>Produkte werden geladen...</div>;
-    }
+    if (loading) return <div>Produkte werden geladen...</div>;
+    if (error) return <div>{error}</div>;
 
-    if (error) {
-        return <div>{error}</div>;
-    }
-
+    // Navigiert zum Checkout für das ausgewählte Produkt
     const handleBuyNow = (productId) => {
         navigate(`/checkout/${productId}`);
     };
-
+    // Gibt die Produktoptionen mit den geladenen Daten aus
     return (
         <section className="product-options-section">
             <h2>Wählen Sie Ihren AI Agent Plan</h2>

@@ -1,60 +1,75 @@
+// Importiert React, die benötigten Hooks `useState` und `useContext`
 import React, { useState, useContext } from 'react';
+// Importiert das CSS-Stylesheet für das Styling der LoginPage
 import './LoginPage.css';
-import ApiService from '../../context/ApiService.jsx';  // Importiere den ApiService
+// Importiert den ApiService, um die Login-Funktionalität zu unterstützen
+import ApiService from '../../context/ApiService.jsx';
+// Importiert `useNavigate` für die Navigation nach erfolgreichem Login
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../../context/AuthContext';  // Importiere AuthContext
+// Importiert den AuthContext, um die `login`-Funktion zu verwenden
+import AuthContext from '../../context/AuthContext';
 
 function LoginPage() {
-  const [username, setUsername] = useState('');  // Klare Benennung des Benutzernamens
+  // Definiert den State für Benutzernamen, Passwort und Fehlernachrichten
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);  // Setze den initialen Error-Wert auf null, um Fehler klarer darzustellen
+  const [error, setError] = useState(null);
 
-  const { login } = useContext(AuthContext);  // Hole die login-Funktion aus dem AuthContext
+  // Extrahiert die `login`-Funktion aus dem AuthContext
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Definiere die handleLogin-Funktion
+  // Definiert die `handleLogin`-Funktion, die beim Absenden des Formulars aufgerufen wird
   const handleLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Verhindert das Standard-Formularverhalten (Seiten-Reload)
 
     try {
-      const loginRequest = { username, password };  // Erstelle loginRequest mit klaren Variablen-Namen
-      const response = await ApiService.login(loginRequest);  // Rufe die ApiService login-Methode auf
+      // Erstellt das Login-Anfrageobjekt
+      const loginRequest = { username, password };
+
+      // Sendet die Login-Anfrage und erhält das Token als Antwort
+      const response = await ApiService.login(loginRequest);
       const token = response.data.token;
 
-      login(token);  // Rufe die login-Funktion aus dem AuthContext auf
-      navigate('/profile');  // Navigiere zur Profilseite
-
+      // Speichert das Token im AuthContext und navigiert zur Profilseite
+      login(token);
+      navigate('/profile');
     } catch (err) {
-      // Verbesserte Fehlerbehandlung mit klareren Meldungen
+      // Fehlerbehandlung: Setzt eine Fehlermeldung im State, um sie anzuzeigen
       console.error('Login error:', err);
       setError(err.response?.data?.message || 'An error occurred during login. Please check your credentials.');
     }
   };
 
   return (
-      <div className="login-page">
-        <form className="login-form" onSubmit={handleLogin}>
+      <div className="login-page"> {/* Haupt-Container für die Login-Seite */}
+        <form className="login-form" onSubmit={handleLogin}> {/* Formular, das die handleLogin-Funktion aufruft */}
           <h2>Login</h2>
-          {error && <p className="error-message">{error}</p>}  {/* Fehlernachricht anzeigen */}
+
+          {/* Fehlernachricht anzeigen, falls ein Fehler im State gesetzt ist */}
+          {error && <p className="error-message">{error}</p>}
+
           <label>
             Username:
             <input
                 type="text"
-                value={username}  // Verwende die klar benannte username-Variable
-                onChange={(e) => setUsername(e.target.value)}
+                value={username} // Wert des Benutzernamensfelds
+                onChange={(e) => setUsername(e.target.value)} // Aktualisiert den State bei Eingabe
                 required
             />
           </label>
+
           <label>
             Password:
             <input
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={password} // Wert des Passwortfelds
+                onChange={(e) => setPassword(e.target.value)} // Aktualisiert den State bei Eingabe
                 required
             />
           </label>
-          <button type="submit" className="login-button">Login</button>
+
+          <button type="submit" className="login-button">Login</button> {/* Absenden-Button */}
         </form>
       </div>
   );

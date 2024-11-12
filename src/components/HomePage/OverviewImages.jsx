@@ -4,16 +4,17 @@ import './HomePage.css';
 import handy from './Handy.jpg';
 import schreibtisch from './Schreibtisch.jpg';
 
+// Definiert die OverviewImages-Komponente, die die Bilder für die Überblick-Sektion anzeigt
 function OverviewImages() {
     const [header, setHeader] = useState('');
     const [ctaText, setCtaText] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
+    useEffect(() => {      // useEffect-Hook lädt die Überblick-Daten beim ersten Rendern
         const fetchOverviewData = async () => {
             try {
-                const keys = [
+                const keys = [ // Definiert die Schlüssel für die Überblick-Daten
                     'overview_images_header',
                     'overview_cta_text'
                 ];
@@ -22,11 +23,11 @@ function OverviewImages() {
                 responses.forEach(response => {
                     contentMap[response.data.key] = response.data.content;
                 });
-
+                // Setzt den Header und den CTA-Text für die Überblick-Sektion
                 setHeader(contentMap['overview_images_header']);
                 setCtaText(contentMap['overview_cta_text']);
                 setLoading(false);
-            } catch (err) {
+            } catch (err) { // Fehlerprotokollierung in der Konsole
                 console.error('Fehler beim Laden der Überblick-Daten:', err);
                 setError('Es gab ein Problem beim Laden der Überblick-Daten.');
                 setLoading(false);
@@ -44,7 +45,7 @@ function OverviewImages() {
         return <p>{error}</p>;
     }
 
-    return (
+    return ( // Rendert die Überblick-Daten, wenn sie erfolgreich geladen wurden
         <section className="overview-img">
             <h2>{header}</h2>
             < div

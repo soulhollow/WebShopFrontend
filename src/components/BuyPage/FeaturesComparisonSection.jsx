@@ -3,22 +3,31 @@ import ApiService from '../../context/ApiService.jsx';
 import './BuyPage.css';
 
 function FeaturesComparisonSection() {
-  const [header, setHeader] = useState(''); // Header für die Vergleichssektion
-  const [featuresData, setFeaturesData] = useState([]); // Speichert die Vergleichsdaten
+  const [header, setHeader] = useState('');
+  const [featuresData, setFeaturesData] = useState([]);
+  const [productNames, setProductNames] = useState({
+    productA: 'Produkt A',
+    productB: 'Produkt B',
+    productC: 'Produkt C',
+    productD: 'Produkt D',
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchFeaturesData = async () => {
+    const fetchData = async () => {
       try {
-        const keys = [ // Definiert die Schlüssel für die Daten, die abgerufen werden sollen
+        const keys = [
           'features_comparison_header',
           'feature_comparison_1',
           'feature_comparison_2',
           'feature_comparison_3',
-          'feature_comparison_4'
+          'feature_comparison_4',
+          'product_name_A',
+          'product_name_B',
+          'product_name_C',
+          'product_name_D',
         ];
-        // Ruft die Inhalte basierend auf den angegebenen Schlüsseln ab
         const responses = await ApiService.getTextContentsByKeys(keys);
         const contentMap = {};
         responses.forEach(response => {
@@ -26,27 +35,36 @@ function FeaturesComparisonSection() {
         });
 
         setHeader(contentMap['features_comparison_header']);
-
-        // Formatiert die Vergleichsdaten
         const formattedFeatures = keys
-            .filter(key => key !== 'features_comparison_header')
+            .filter(key => key.startsWith('feature_comparison_'))
             .map(key => JSON.parse(contentMap[key]));
 
         setFeaturesData(formattedFeatures);
+        setProductNames({
+          productA: contentMap['product_name_A'],
+          productB: contentMap['product_name_B'],
+          productC: contentMap['product_name_C'],
+          productD: contentMap['product_name_D'],
+        });
         setLoading(false);
       } catch (err) {
-        console.error('Fehler beim Laden der Features-Daten:', err);
-        setError('Es gab ein Problem beim Laden der Features-Daten.');
+        console.error('Fehler beim Laden der Daten:', err);
+        setError('Es gab ein Problem beim Laden der Daten.');
         setLoading(false);
       }
     };
 
-    fetchFeaturesData();
+    fetchData();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
-  // Gibt die Vergleichssektion mit den geladenen Daten aus
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
   return (
       <section className="features-comparison-section">
         <h2>{header}</h2>
@@ -54,10 +72,10 @@ function FeaturesComparisonSection() {
           <thead>
           <tr>
             <th>Feature</th>
-            <th>Product A</th>
-            <th>Product B</th>
-            <th>Product C</th>
-            <th>Product D</th>
+            <th>{productNames.productA}</th>
+            <th>{productNames.productB}</th>
+            <th>{productNames.productC}</th>
+            <th>{productNames.productD}</th>
           </tr>
           </thead>
           <tbody>

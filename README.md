@@ -1,6 +1,7 @@
 # WebShopFrontend
 
-Das Projekt ist abrufbar unter:
+Das Projekt ist abrufbar unter: https://webagencydh24.de/ 
+da wir nur ein SSL Zertifikat hatten müssen Sie die Seite "https://152.53.130.215:8443/api" aufrufen un dieser Vertrauen. Dadurch ermöglichen Sie dem Frontend die kommunikation mit dem Backend. 
 
 Anmeldedaten: admin admin
 
